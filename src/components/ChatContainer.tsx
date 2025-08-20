@@ -2,6 +2,7 @@ import { useState } from "react";
 import ChatHeader from "./ChatHeader";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
+import WelcomeScreen from "./WelcomeScreen";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Message {
@@ -12,14 +13,7 @@ interface Message {
 }
 
 const ChatContainer = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "Olá. O que podemos te ajudar?",
-      isUser: false,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
   const handleSendMessage = async (messageText: string) => {
@@ -53,28 +47,34 @@ const ChatContainer = () => {
       
       <ScrollArea className="flex-1 px-4">
         <div className="max-w-4xl mx-auto py-6 space-y-4">
-          {messages.map((message) => (
-            <ChatMessage
-              key={message.id}
-              message={message.text}
-              isUser={message.isUser}
-              timestamp={message.timestamp}
-            />
-          ))}
-          
-          {isTyping && (
-            <div className="flex gap-3 p-4">
-              <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-primary flex items-center justify-center shadow-glow-primary">
-                <div className="flex gap-1">
-                  <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                  <div className="w-1 h-1 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-1 h-1 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+          {messages.length === 0 ? (
+            <WelcomeScreen />
+          ) : (
+            <>
+              {messages.map((message) => (
+                <ChatMessage
+                  key={message.id}
+                  message={message.text}
+                  isUser={message.isUser}
+                  timestamp={message.timestamp}
+                />
+              ))}
+              
+              {isTyping && (
+                <div className="flex gap-3 p-4">
+                  <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-primary flex items-center justify-center shadow-glow-primary">
+                    <div className="flex gap-1">
+                      <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                      <div className="w-1 h-1 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-1 h-1 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                    </div>
+                  </div>
+                  <div className="bg-chat-assistant rounded-lg px-4 py-3">
+                    <p className="text-sm text-muted-foreground">MinGo está digitando...</p>
+                  </div>
                 </div>
-              </div>
-              <div className="bg-chat-assistant rounded-lg px-4 py-3">
-                <p className="text-sm text-muted-foreground">MinGo está digitando...</p>
-              </div>
-            </div>
+              )}
+            </>
           )}
         </div>
       </ScrollArea>
