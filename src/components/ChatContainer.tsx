@@ -15,7 +15,7 @@ const ChatContainer = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Olá! Eu sou o Mingo, seu assistente de IA. Como posso ajudá-lo hoje?",
+      text: "Olá. O que podemos te ajudar?",
       isUser: false,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
@@ -37,7 +37,7 @@ const ChatContainer = () => {
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: "Obrigado pela sua mensagem! Esta é uma demonstração da interface do Mingo. Em uma implementação real, aqui seria onde eu processaria sua solicitação e forneceria uma resposta útil baseada em IA.",
+        text: "Obrigado pela sua mensagem! Esta é uma demonstração da interface do MinGo. Em uma implementação real, aqui seria onde eu processaria sua solicitação e forneceria uma resposta útil baseada em IA.",
         isUser: false,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
@@ -72,7 +72,7 @@ const ChatContainer = () => {
                 </div>
               </div>
               <div className="bg-chat-assistant rounded-lg px-4 py-3">
-                <p className="text-sm text-muted-foreground">Mingo está digitando...</p>
+                <p className="text-sm text-muted-foreground">MinGo está digitando...</p>
               </div>
             </div>
           )}

@@ -33,7 +33,7 @@ const ChatInput = ({ onSendMessage, disabled = false }: ChatInputProps) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Digite sua mensagem para o Mingo..."
+            placeholder="Digite sua mensagem para o MinGo..."
             className="min-h-[52px] max-h-32 resize-none pr-12 bg-input border-border focus:ring-2 focus:ring-primary/20 transition-smooth"
             disabled={disabled}
           />
